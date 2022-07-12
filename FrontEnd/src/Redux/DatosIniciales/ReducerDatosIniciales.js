@@ -2,12 +2,17 @@ import{
     ObtenerDatosIniciales_Exito,
     ObtenerDatosIniciales_Error,
     ObtenerDatosIniciales_Cargando,
+    guardandoDatosUsuario_Exito,
+    guardandoDatosUsuario_Error,
+    guardandoDatosUsuario_Cargando
 }from './AccionesDatosIniciales'
 const datosInicialesPorDefecto = {
     isDatosIniciales: {isMostrar: false, tipo: '', mensaje: ''},
+    isDatosUsuarios: {isMostrar: false, tipo: '', mensaje: ''},
     errorAtrapado:{isError:false, mensaje:''},
     estados: [],
-    tipoSolicitud: []
+    tipoSolicitud: [],
+    datosDeUsuario:{}
     
 }
 
@@ -44,6 +49,27 @@ const storeDatosIniciales = (state = datosInicialesPorDefecto, accion) => {
             return{
                 ...state,
                 isDatosIniciales: {isMostrar: accion.estado, tipo: 'cargando', mensaje: 'ObteniendoDatos'},
+            }
+        }
+        case guardandoDatosUsuario_Exito:{
+          
+            return{
+                ...state,
+                datosDeUsuario: accion.datos,
+                isDatosUsuarios: {isMostrar: false, tipo: '', mensaje: ''},
+            }
+        }
+        case guardandoDatosUsuario_Error:{
+            return{
+                ...state,
+                errorAtrapado:{isError:true, mensaje: accion.error.message},
+                isDatosUsuarios: {isMostrar: false, tipo: '', mensaje: ''},
+            }
+        }
+        case guardandoDatosUsuario_Cargando:{
+            return{
+                ...state,
+                isDatosUsuarios: {isMostrar: accion.estado, tipo: 'cargando', mensaje: 'Guardando datos'},
             }
         }
         default:

@@ -2,7 +2,9 @@ import API from './../Configuracion/api';
 export const ObtenerDatosIniciales_Exito = 'ObtenerDatosIniciales_Exito';
 export const ObtenerDatosIniciales_Error = 'ObtenerDatosIniciales_Error';
 export const ObtenerDatosIniciales_Cargando = 'ObtenerDatosIniciales_Cargando';
-
+export const guardandoDatosUsuario_Exito = 'guardandoDatosUsuario_Exito';
+export const guardandoDatosUsuario_Error = 'guardandoDatosUsuario_Error';
+export const guardandoDatosUsuario_Cargando = 'guardandoDatosUsuario_Cargando';
 export const ObtenerDatosIniciales_Exito_accion = (datos, variable) => {
     return {
       type: ObtenerDatosIniciales_Exito,
@@ -57,7 +59,43 @@ export const ObtenerEstados_accion = () => {
     };
   };
 
-
+  /////////////////GUARDANDO DATOS DE USUARIO////////////////////////////
+  export const guardandoDatosUsuario_Exito_accion = (datos) => {
+    return {
+      type: guardandoDatosUsuario_Exito,
+      datos: datos,
+    };
+  };
+  export const guardandoDatosUsuario_Error_accion = (error) => {
+      return {
+        type: guardandoDatosUsuario_Error,
+        error: error,
+      };
+  };
+  export const guardandoDatosUsuario_Cargando_accion = (estado) => {
+      return {
+        type: guardandoDatosUsuario_Cargando,
+        estado: estado,
+      };
+  };
+  export const guardandoDatosUsuario_accion = (datos) => {
+    return dispatch => {
+       dispatch(guardandoDatosUsuario_Cargando_accion(true));
+      API({
+        url: '/usuariosUX/agregar',
+        method: 'POST',
+        data: datos
+      })
+        .then(res => {
+            console.log(res)
+           dispatch(guardandoDatosUsuario_Exito_accion(datos));
+        })
+        .catch(error => {
+          console.log({error});
+           dispatch(guardandoDatosUsuario_Error_accion(error));
+        });
+    };
+  };  
 
 //########################Template ACCIONES
 /*

@@ -71,7 +71,7 @@ const Layout = () => {
 
   return (
     <React.Fragment>
-      <Head title="Loading" />
+      {/* <Head title="Loading" />
       <div className="nk-app-root">
         <div className={sidebarClass}>
           <LeftPanel theme={themeState.apps} setCurrentMenuTab={setCurrentMenuTab} setVisibility={setVisibility} />
@@ -85,11 +85,11 @@ const Layout = () => {
         {visibility && mobileView && <div className="nk-sidebar-overlay" onClick={toggleSidebar}></div>}
         <div className="nk-main">
           <div className="nk-wrap">
-            <Header fixed sidebarToggle={toggleSidebar} setVisibility={setVisibility} />
+            <Header fixed sidebarToggle={toggleSidebar} setVisibility={setVisibility} /> */}
             <Pages />
-          </div>
+          {/* </div>
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };

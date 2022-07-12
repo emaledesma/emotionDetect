@@ -8,7 +8,7 @@ const PrivateRoute = ({ exact, component: Component, ...rest }) => (
     exact={exact ? true : false}
     rest
     render={(props) =>
-      auth ? (
+      true ? (
         <Component {...props} {...rest}></Component>
       ) : (
         <Redirect to={`${process.env.PUBLIC_URL}/auth-login`}></Redirect>

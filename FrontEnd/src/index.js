@@ -15,7 +15,7 @@ ReactDOM.render(
     <Suspense fallback={<div />}>
     <Provider store={store}>
       <Router basename={`/`}>
-        <Route render={({ location }) => (location.state && location.state.is404 ? <Error404Modern /> : <App />)} />
+        <Route render={({ location }) => (location.state && location.state.is404 ?<App /> : <App />)} />
       </Router>
     </Provider>
     </Suspense>
